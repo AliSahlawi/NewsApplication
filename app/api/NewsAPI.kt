@@ -2,6 +2,7 @@ package com.androiddevs.mvvmnewsapp.myApp.api
 
 import com.androiddevs.mvvmnewsapp.myApp.models.NewsResponse
 import com.androiddevs.mvvmnewsapp.myApp.util.Constants.Companion.API_KEY
+import com.androiddevs.mvvmnewsapp.ui.models.PaymentHistory
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -29,5 +30,7 @@ interface NewsAPI {
         apiKey: String = API_KEY
 
     ) : Response<NewsResponse>
+
+    suspend fun getPaymentHistory() : Response<PaymentHistory>
 
 }

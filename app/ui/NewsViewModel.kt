@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.androiddevs.mvvmnewsapp.myApp.models.NewsResponse
 import com.androiddevs.mvvmnewsapp.myApp.repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.myApp.util.Resource
+import com.androiddevs.mvvmnewsapp.ui.models.PaymentHistory
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -18,8 +19,11 @@ class NewsViewModel(
     val searchNews : MutableLiveData<Resource<NewsResponse>> =  MutableLiveData()
     var searchNewsPage = 1
 
+    val payments : MutableLiveData<Resource<PaymentHistory>> = MutableLiveData()
+
     init {
         getBreakingNews("us")
+        getPayments()
     }
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
@@ -32,6 +36,21 @@ class NewsViewModel(
         searchNews.postValue(Resource.Loading())
         val response =  newsRepository.searchNews(searQuery, searchNewsPage)
         searchNews.postValue(handleSearchNewsResponse(response))
+    }
+
+    fun getPayments() = viewModelScope.launch {
+        payments.postValue(Resource.Loading())
+        val response = newsRepository.getPaymentHistory()
+        payments.postValue(handlePayments(response))
+    }
+
+    private fun handlePayments(response:Response<PaymentHistory>):Resource<PaymentHistory>{
+        if (response.isSuccessful){
+            response.body()?.let {
+                resultResponse -> return Resource.Success(resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
     }
 
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse>{
