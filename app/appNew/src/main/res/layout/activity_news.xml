@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myApp.ui.NewsActivity">
+
+<!--    <FrameLayout
+        android:id="@+id/flFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        appNew:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        appNew:layout_constraintEnd_toEndOf="parent"
+        appNew:layout_constraintHorizontal_bias="0.5"
+        appNew:layout_constraintStart_toStartOf="parent"
+        appNew:layout_constraintTop_toTopOf="parent">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_height="match_parent"
+            android:id="@+id/newsNavHostFragment"
+            appNew:defaultNavHost="true"
+            appNew:navGraph="@navigation/news_nav_graph"
+            />
+
+    </FrameLayout>-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#717073"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabContentStart="32dp"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorColor="#525252"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="16dp"
+        app:tabPaddingStart="16dp"
+        app:tabRippleColor="#525252"
+        app:tabTextAppearance="?attr/textAppearanceSubtitle1"
+        app:tabTextColor="#000000" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+   <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        appNew:menu="@menu/bottom_navigation_menu"
+        appNew:layout_constraintBottom_toBottomOf="parent"
+        appNew:layout_constraintEnd_toEndOf="parent"
+        appNew:layout_constraintHorizontal_bias="0.5"
+        appNew:layout_constraintStart_toStartOf="parent"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
